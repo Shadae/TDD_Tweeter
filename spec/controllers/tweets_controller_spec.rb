@@ -38,19 +38,18 @@ describe TweetsController do
   describe 'POST #create' do
     it 'does create new tweet' do
      tweet = Tweet.create(author: 'Bob', content: 'The content')
-
-      get :create, id: tweet.id, post: {
-                                      author: 'The title',
-                                      content: 'The content' }
+      get :create, id: 1, tweet:
+                              {author: 'Bob',
+                              content: 'The content'} 
     end
 
     it 'renders new if text is missing' do
       tweet = Tweet.create(author: 'Bob', content: 'The content')
 
-      get :create, id: tweet.id, post: {
-                                      title: '' }
+      get :create, tweet: {author: 'Bob',
+                           content: '' }
 
-      expect(response).to render_template(:new)
+      expect(response).to render_template('new')
     end
   end
 

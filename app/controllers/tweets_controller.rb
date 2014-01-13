@@ -13,9 +13,8 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new
-    @tweet.author = params[:tweet][:author]
-    @tweet.content = params[:tweet][:content]
+    @tweet = Tweet.new(tweet_params)
+    
     if @tweet.save
       redirect_to @tweet
     else
@@ -26,6 +25,6 @@ class TweetsController < ApplicationController
   private
 
   def tweet_params
-    params.permit(:author, :content)
+    params.require(:tweet).permit(:author, :content)
   end
 end
