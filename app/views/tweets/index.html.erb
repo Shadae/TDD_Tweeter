@@ -1,0 +1,11 @@
+<h1> Home Tweet Home </h1>
+<h4>Have Something to Say?</h4>
+<p>Say it here</p>
+<%= render 'tweets/form' %>
+<hr>
+<% @tweets.reverse.each do |tweet| %>
+  Tweet: #<%= tweet.id%> <br>
+  <%= tweet.content %> &nbsp <br>
+  Crafted By: <%= tweet.author %>
+  <hr>
+<% end %>
