@@ -13,7 +13,9 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = Tweet.new
+    @tweet.author = params[:tweet][:author]
+    @tweet.content = params[:tweet][:content]
     if @tweet.save
       redirect_to @tweet
     else
